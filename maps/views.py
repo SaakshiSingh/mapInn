@@ -29,13 +29,11 @@ def get_html_content(location,state,country):
 	#options.add_argument('--ignore-certificate-errors-spki-list')
 	#options.add_argument('--ignore-ssl-errors')
 	
-	
-	
 	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
 	#chrome_driver_path = 'C:/Users/user/Desktop/projects/MapInn/chromedriver'
 	#driver = webdriver.Chrome(executable_path = chrome_driver_path,chrome_options=options)
-	driver.set_page_load_timeout(30)
-	driver.implicitly_wait(10)
+	#driver.set_page_load_timeout(30)
+	#driver.implicitly_wait(10)
 
 	location = location.replace(' ','%20')
 	state = state.replace(' ','%20')
@@ -45,7 +43,8 @@ def get_html_content(location,state,country):
 	
 	content = driver.page_source
 	
-	driver.quit()
+	#driver.quit()
+	print(content)
 	return content
 
 def scrapeWebsite(html_content,state,country):
