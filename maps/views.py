@@ -25,9 +25,10 @@ def get_html_content(location,state,country):
 	options.add_argument('--headless')
 	options.add_argument('--disable-dev-shm-usage')
 	options.add_argument('--no-sandbox')
-	#options.add_argument("--incognito")
-	#options.add_argument('--ignore-certificate-errors-spki-list')
-	#options.add_argument('--ignore-ssl-errors')
+	options.add_argument('--disable-gpu')
+	options.add_argument("--incognito")
+	options.add_argument('--ignore-certificate-errors-spki-list')
+	options.add_argument('--ignore-ssl-errors')
 	
 	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
 	#chrome_driver_path = 'C:/Users/user/Desktop/projects/MapInn/chromedriver'
