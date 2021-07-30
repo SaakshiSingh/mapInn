@@ -9,7 +9,6 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from fake_useragent import UserAgent
 import pandas as pd
 from django.conf import settings
 import json
