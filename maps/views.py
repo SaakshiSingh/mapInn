@@ -8,7 +8,8 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
+from fake_useragent import UserAgent
 import pandas as pd
 from django.conf import settings
 import json
@@ -19,18 +20,20 @@ import os
 # Create your views here.
 
 def get_html_content(location,state,country):
-	
-	options = webdriver.ChromeOptions()
+	options = Options()
 	options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 	options.add_argument('--headless')
+	#options.add_argument("--example-flag")
 	options.add_argument('--disable-dev-shm-usage')
 	options.add_argument('--no-sandbox')
 	options.add_argument('--disable-gpu')
-	options.add_argument("--incognito")
-	options.add_argument('--ignore-certificate-errors-spki-list')
-	options.add_argument('--ignore-ssl-errors')
 	
-	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
+	#options.add_argument('--user-agent="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"')
+	#options.add_argument("--incognito")
+	#options.add_argument('--ignore-certificate-errors-spki-list')
+	#options.add_argument('--ignore-ssl-errors')
+	
+	driver = webdriver.Chrome(executable_path=str(os.environ.get("CHROMEDRIVER_PATH")), chrome_options=options)
 	#chrome_driver_path = 'C:/Users/user/Desktop/projects/MapInn/chromedriver'
 	#driver = webdriver.Chrome(executable_path = chrome_driver_path,chrome_options=options)
 	#driver.set_page_load_timeout(30)
