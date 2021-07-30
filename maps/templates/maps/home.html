@@ -1,0 +1,16 @@
+{% extends 'maps/base.html'%}
+
+{%block content%}
+
+{%for msg in messages%}
+<div class="alert alert-danger alert-dismissible fade show mt-2 mx-2" role="alert">
+  {{msg}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{%endfor%}
+<div class="container-fluid mt-5">
+	{{map|safe}}
+</div>
+
+
+{% endblock%}
