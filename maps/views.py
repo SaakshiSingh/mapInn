@@ -8,46 +8,43 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
 import pandas as pd
 from django.conf import settings
 import json
 import time
-import os
 
 
 # Create your views here.
 
 def get_html_content(location,state,country):
-	options = Options()
-	options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-	options.add_argument('--headless')
-	#options.add_argument("--example-flag")
-	options.add_argument('--disable-dev-shm-usage')
+	
+	options = webdriver.ChromeOptions()
+	#options.add_argument('--headless')
 	options.add_argument('--no-sandbox')
-	options.add_argument('--disable-gpu')
-	
-	#options.add_argument('--user-agent="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"')
-	#options.add_argument("--incognito")
-	#options.add_argument('--ignore-certificate-errors-spki-list')
+	options.add_argument("--incognito")
+	options.add_argument('--ignore-certificate-errors-spki-list')
+	options.add_argument('--ignore-ssl-errors')
+	#options.add_argument('--ignore-certificate-errors')
 	#options.add_argument('--ignore-ssl-errors')
-	
-	driver = webdriver.Chrome(executable_path=str(os.environ.get("CHROMEDRIVER_PATH")), chrome_options=options)
-	#chrome_driver_path = 'C:/Users/user/Desktop/projects/MapInn/chromedriver'
-	#driver = webdriver.Chrome(executable_path = chrome_driver_path,chrome_options=options)
-	#driver.set_page_load_timeout(30)
-	#driver.implicitly_wait(10)
+	#options.add_argument('--headless')
+	#options.add_experimental_option("detach", True)
+
+	chrome_driver_path = 'C:/Users/user/Desktop/projects/MapInn/chromedriver'
+	driver = webdriver.Chrome(executable_path = chrome_driver_path,chrome_options=options)
+	driver.set_page_load_timeout(30)
+	driver.implicitly_wait(10)
 
 	location = location.replace(' ','%20')
 	state = state.replace(' ','%20')
 	country = country.replace(' ','%20')
 	url = f'https://hotel.yatra.com/hotel-search/dom/search?city.name={location}&state.name={state}&country.name={country}'
 	driver.get(url)
-	
+	driver.maximize_window()
+
 	content = driver.page_source
 	
-	#driver.quit()
-	print(content)
+	driver.quit()
 	return content
 
 def scrapeWebsite(html_content,state,country):

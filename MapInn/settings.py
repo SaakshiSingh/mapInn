@@ -25,7 +25,7 @@ SECRET_KEY = '=bn1vn_bx_1#4g*u@&x2xym7%acz9cifb#8qn^j9cst4m1z5ua'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://map-inn.herokuapp.com/']
+ALLOWED_HOSTS = ['https://map-inn.herokuapp.com/','http://127.0.0.1:8000/']
 
 
 # Application definition
