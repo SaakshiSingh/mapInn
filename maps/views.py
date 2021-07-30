@@ -21,18 +21,19 @@ import os
 def get_html_content(location,state,country):
 	
 	options = webdriver.ChromeOptions()
+	options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 	options.add_argument('--headless')
-	options.add_argument("--disable-dev-shm-usage")
+	options.add_argument('--disable-dev-shm-usage')
 	options.add_argument('--no-sandbox')
 	#options.add_argument("--incognito")
 	#options.add_argument('--ignore-certificate-errors-spki-list')
 	#options.add_argument('--ignore-ssl-errors')
 	
-	options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 	
-	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+	
+	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
 	#chrome_driver_path = 'C:/Users/user/Desktop/projects/MapInn/chromedriver'
-	driver = webdriver.Chrome(executable_path = chrome_driver_path,chrome_options=options)
+	#driver = webdriver.Chrome(executable_path = chrome_driver_path,chrome_options=options)
 	driver.set_page_load_timeout(30)
 	driver.implicitly_wait(10)
 
@@ -41,8 +42,7 @@ def get_html_content(location,state,country):
 	country = country.replace(' ','%20')
 	url = f'https://hotel.yatra.com/hotel-search/dom/search?city.name={location}&state.name={state}&country.name={country}'
 	driver.get(url)
-	driver.maximize_window()
-
+	
 	content = driver.page_source
 	
 	driver.quit()
