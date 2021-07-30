@@ -25,7 +25,7 @@ SECRET_KEY = '=bn1vn_bx_1#4g*u@&x2xym7%acz9cifb#8qn^j9cst4m1z5ua'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://map-inn.herokuapp.com/']
 
 
 # Application definition
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -119,10 +119,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT =os.path.join(BASE_DIR,'staticfiles/')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
-
-
 TOKEN_KEY = os.environ.get('TOKEN_KEY')
+
+django_heroku.settings(locals())
