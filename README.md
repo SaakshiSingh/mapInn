@@ -12,8 +12,9 @@ MapInn scrapes Hotel information from "https://www.yatra.com/" for any city worl
   <li>Folium</li>
   <li>Serelium</li>
   <li>Python</li>
-  <li>Beautifulsoup<li>
-<ul>
+  <li>Beautifulsoup</li>
+  <li>Geocoder and MapBox to locate latitude and longitude of th place</li?
+</ul>
 
 Screenshots from MapInn :
 https://user-images.githubusercontent.com/60483781/127662167-c562671f-3e9e-47b0-a81f-c8858d2a1e5c.mp4
